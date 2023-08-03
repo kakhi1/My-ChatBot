@@ -1,27 +1,40 @@
-const express = require("express");
+import { Configuration, OpenAIApi } from "openai";
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
 
-const cors = require("cors");
+import dotenv from "dotenv";
 
+dotenv.config();
+const apiKey = process.env.OPENAI_API_KEY;
 const app = express();
-
-require("dotenv").config();
-
-const PORT = process.env.PORT || 3001;
-
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
-
+const port = 8000;
+app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.json());
+const configuration = new Configuration({
+  apiKey: apiKey,
+});
+const openai = new OpenAIApi(configuration);
 
-app.listen(PORT, () =>
-  console.log(`Server started on http://localhost:${PORT}`)
-);
+app.post("/", async (request, response) => {
+  const { chats } = request.body;
+
+  const result = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: "you are web developer",
+      },
+      ...chats,
+    ],
+  });
+
+  response.json({
+    output: result.data.choices[0].message,
+  });
+});
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
