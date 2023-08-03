@@ -41,14 +41,17 @@ function App() {
   };
 
   return (
-    <main className=" border-black border-4 h-[500px] flex  flex-col justify-start items-start p-5">
-      <h1 className="text-[70px]">chatbot</h1>
+    <main className=" border-black border-2 max-w-[400px]  h-[500px] relative flex  flex-col justify-between text-left items-start m-5 rounded-md scroll-smooth">
+      <div className="w-full flex items-center h-[20%] bg-green-600 gap-5 px-5">
+        <div className="w-10 h-10 rounded-full bg-white "></div>
+        <h1 className="text-lg font-bold uppercase text-white">chatbot</h1>
+      </div>
 
-      <section>
+      <section className="overflow-y-scroll text-green-600 bg-[#F6F4EB]">
         {chats && chats.length
           ? chats.map((chat, index) => (
               <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
-                <span>
+                <span className="text-green bg-white ">
                   <b>{chat.role.toUpperCase()}</b>
                 </span>
                 <span>:</span>
@@ -64,7 +67,11 @@ function App() {
         </p>
       </div>
 
-      <form action="" onSubmit={(e) => chat(e, message)}>
+      <form
+        className="w-full h-10 text-left bg-red-400 "
+        action=""
+        onSubmit={(e) => chat(e, message)}
+      >
         <input
           type="text"
           name="message"
