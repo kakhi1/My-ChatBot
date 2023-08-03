@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <main className=" border-black border-4 h-[500px]">
+    <main className=" border-black border-4 h-[500px] flex  flex-col justify-start items-start p-5">
       <h1 className="text-[70px]">chatbot</h1>
 
       <section>
