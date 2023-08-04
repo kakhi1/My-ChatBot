@@ -47,11 +47,16 @@ function App() {
         <h1 className="text-lg font-bold uppercase text-white">chatbot</h1>
       </div>
 
-      <section className="overflow-y-scroll text-green-600 bg-[#F6F4EB]">
+      <section className="overflow-y-scroll text-green-600 bg-[#F6F4EB] w-full">
         {chats && chats.length
           ? chats.map((chat, index) => (
-              <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
-                <span className="text-green bg-white ">
+              <p
+                key={index}
+                className={`bg-red-400 w-full h-10 flex justify-around ${
+                  chat.role === "user" ? "user_msg" : ""
+                }`}
+              >
+                <span className="text-green bg-white w-1/3 rounded-full ">
                   <b>{chat.role.toUpperCase()}</b>
                 </span>
                 <span>:</span>
