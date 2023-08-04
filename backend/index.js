@@ -6,7 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
-const apiKey = process.env.OPENAI_API_KEY;
+const apiKey = process.env.OPEN_AI_KEY;
 const app = express();
 const port = 8000;
 app.use(bodyParser.json());

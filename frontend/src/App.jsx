@@ -41,43 +41,46 @@ function App() {
   };
 
   return (
-    <main className=" border-black border-2 max-w-[400px]  h-[500px] relative flex  flex-col justify-between text-left items-start m-5 rounded-md scroll-smooth">
-      <div className="w-full flex items-center h-[20%] bg-green-600 gap-5 px-5">
+    <main className=" border-black border-2 bg-[#F6F4EB] flex h-[700px] flex-col justify-between text-left items-start m-5 rounded-md ">
+      <div className="w-full flex items-center justify-between h-[15%] bg-green-500 gap-5 px-5 border-b-2 border-black">
         <div className="w-10 h-10 rounded-full bg-white "></div>
         <h1 className="text-lg font-bold uppercase text-white">chatbot</h1>
       </div>
 
-      <section className="overflow-y-scroll text-green-600 bg-[#F6F4EB] w-full">
+      <section className=" text-green-500 w-full h-[70%] overflow-x-hidden overflow-y-scroll">
         {chats && chats.length
           ? chats.map((chat, index) => (
               <p
                 key={index}
-                className={`bg-red-400 w-full h-10 flex justify-around ${
+                className={`m-4 w-full flex gap-1 ${
                   chat.role === "user" ? "user_msg" : ""
                 }`}
               >
-                <span className="text-green bg-white w-1/3 rounded-full ">
+                <span className="text-green bg-white w-[20%] h-[20px] rounded-full flex items-center 
+                justify-center shadow-sm shadow-black text-[10px] ">
                   <b>{chat.role.toUpperCase()}</b>
                 </span>
                 <span>:</span>
-                <span>{chat.content}</span>
+                <span className="bg-white rounded-lg w-[80%] flex items-center justify-center
+                 shadow-sm shadow-black p-2">{chat.content}</span>
               </p>
             ))
           : ""}
       </section>
 
-      <div className={isTyping ? "" : "hide"}>
+      <div className={`text-green-500 pl-4 ${isTyping ? "" : "hide"}`}>
         <p>
           <i>{isTyping ? "Typing" : ""}</i>
         </p>
       </div>
 
       <form
-        className="w-full h-10 text-left bg-red-400 "
+        className="w-full h-20 text-left  border-t-2 border-black "
         action=""
         onSubmit={(e) => chat(e, message)}
       >
         <input
+          className="w-full h-full pl-4 "
           type="text"
           name="message"
           value={message}
