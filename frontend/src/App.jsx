@@ -19,7 +19,7 @@ function App() {
 
     setMessage("");
 
-    fetch("http://localhost:8000/", {
+    fetch("https://ai-chatbot-k5aq.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
